@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wanderers.wanderers.app.dao.MusicMapper">
+    <resultMap id="musicMap" type="com.wanderers.wanderers.app.model.Music">
+        <id property="mscID" column="msc_id"/>
+        <result property="mscName" column="msc_name"/>
+        <result property="mscAvatar" column="msc_avatar"/>
+        <result property="mscIntr" column="msc_intr"/>
+        <result property="mscListens" column="msc_listens"/>
+        <result property="mscDownloads" column="msc_downloads"/>
+        <result property="mscPrices" column="msc_price"/>
+        <result property="mscSrc" column="msc_src"/>
+        <!--<association property="musician" javaType="com.wanderers.wanderers.app.model.Musician">-->
+            <!--<id property="mscnID" column="mscn_id"/>-->
+            <!--<result property="mscnName" column="mscn_name"/>-->
+        <!--</association>-->
+        <collection property="tagList" ofType="com.wanderers.wanderers.app.model.Tag">
+            <id property="tagID" column="tag_id"/>
+            <result property="tagNum" column="tag_num"/>
+        </collection>
+        <collection property="album" ofType="com.wanderers.wanderers.app.model.Album">
+            <id property="albumID" column="album_id"/>
+            <result property="albumName" column="album_name"/>
+        </collection>
+        <collection property="band" ofType="com.wanderers.wanderers.app.model.Band">
+            <id property="bandID" column="band_id"/>
+            <result property="bandName" column="band_name"/>
+        </collection>
+    </resultMap>
+    <!--查找-->
+    <select id="findList" resultMap="musicMap">
+        SELECT
+        music.msc_id,
+        msc_name,
+        msc_avatar,
+        msc_intr,
+        msc_listens,
+        msc_downloads,
+        msc_price,
+        msc_src,
+        tag_id,
+        tag_num,
+        album.album_id,
+        album_name,
+        music.del_flag as 'del_flag'
+        FROM music,tag,album
+        <where>
+            <if test="mscName !=null and mscName !=''">
+                AND msc_name = #{mscName},
+                AND msc_id = #{mscID},
+--                 music.msc_id = tag.msc_id,
+--                 album.album_id = music.album_id
+            </if>
+        </where>
+        limit 1
+    </select>
+
+    <select id="findAll" resultMap="musicMap">
+        SELECT
+        msc_name,
+        msc_intr,
+        msc_price,
+        msc_downloads
+        FROM music
+    </select>
+
+    <select id="findByMscnName" resultMap="musicMap">
+        SELECT * FROM music
+        LEFT JOIN mscn_msc mm ON music.msc_id=mm.msc_id
+        JOIN mscn ON mscn_id = mm.mscn_id
+        WHERE musician.mscn_name = #{mscnName}
+    </select>
+
+    <!--插入-->
+    <insert id="insert">
+        INSERT INTO music (
+        msc_name,
+        msc_avatar,
+        msc_intr,
+        msc_listens,
+        msc_downloads,
+        msc_price,
+        album_id,
+        band_id,
+
+        del_flag
+        )VALUES (
+        #{mscName},
+        #{mscAvatar},
+        #{mscIntr},
+        #{mscListens},
+        #{mscDownloads},
+        #{mscPrices},
+        #{album.albumID},
+        #{band.bandID},
+        '0'
+        )
+    </insert>
+
+    <!--更新-->
+    <update id="update">
+        UPDATE music SET
+        msc_name = #{mscName},
+        msc_intr = #{mscIntr},
+        WHERE msc_id = #{mscID}
+    </update>
+
+    <!--删除-->
+    <update id="delete" parameterType="java.lang.Long">
+        UPDATE music SET
+        del_flag = '1'
+        WHERE msc_id=#{mscID}
+    </update>
+</mapper>

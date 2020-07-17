@@ -1,0 +1,25 @@
+
+# mybatis配置
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/wanderers?useUnicode=true&characterEncoding=utf8&useSSL=false
+    password: root
+    username: root
+    driver-class-name: com.mysql.jdbc.Driver
+  jackson:
+      date-format: yyyy-MM-dd
+      time-zone: GMT+8
+  mvc:
+      date-format: yyyy-MM-dd
+
+#添加secret和expire
+JWT:
+  secret: qwertyuiopasdfghjklzxcvbnmqwerty
+  expire: 6000000
+
+server:
+  port: 8888
