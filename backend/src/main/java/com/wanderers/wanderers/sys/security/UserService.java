@@ -18,7 +18,7 @@ public class UserService extends BaseService<User,UserMapper> implements UserDet
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User condition = new User();
-        condition.setUsername(username);
+        //condition.setUsername(username);
         return this.find(condition);
     }
 }
