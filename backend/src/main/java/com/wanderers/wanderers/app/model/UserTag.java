@@ -14,10 +14,12 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Tag extends BaseModel{
-
+public class UserTag extends BaseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long tid;
-    private String name;
+    private Long id;
+
+    //外键
+    private Long userId;
+    private Long tagId;
 }

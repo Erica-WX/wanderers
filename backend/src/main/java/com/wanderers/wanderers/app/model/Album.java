@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.List;
 
 @Data
@@ -14,14 +17,24 @@ import java.util.List;
 @Entity
 public class Album extends BaseModel{
 
-    private int albumID;
-    private String albumName;
-    private String albumAvatar;
-    private String albumIntr;
-    private int albumListens;
-    private int albumDownloads;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long aid;
+    private String name;
+    private String avatarUrl;
+    private int like;
 
-    private List<Music> musicList;
-    private Musician musician;
-    private Band band;
+    //外键
+    private Long userId;
+    private Long bandId;
+    private Band tagId;
+
+    public Album(String name, String avatarUrl, int like, Long userId, Long bandId, Band tagId) {
+        this.name = name;
+        this.avatarUrl = avatarUrl;
+        this.like = like;
+        this.userId = userId;
+        this.bandId = bandId;
+        this.tagId = tagId;
+    }
 }
