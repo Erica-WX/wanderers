@@ -9,12 +9,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class UsersRepositoryTest {
 
     private UsersRepository usersRepository;
+    
 
     @Autowired
     public void setUsersRepository(UsersRepository usersRepository) {
@@ -23,11 +25,28 @@ public class UsersRepositoryTest {
 
     @Test
     public void getUsersTest() {
-
         List<Users> list = usersRepository.getAll();
         for(Users u: list) {
             System.out.println("username:" + u.getUsername() + " password:" + u.getPassword());
         }
+    }
 
+    @Test
+    public void addNewUser() {
+        Users newUser = new Users("test", "test", 0);
+        usersRepository.save(newUser);
+    }
+
+    @Test
+    public void findUserByUsername() {
+
+        String name1 = "Joe";
+        Optional<Users> option1 = usersRepository.findUsersByUsername(name1);
+        if(option1.isPresent()) {
+            Users user1 = option1.get();
+            System.out.println("用户" + name1 + "的ID是：" + user1.getId());
+        }else {
+            System.out.println("用户" + name1 + "不存在。");
+        }
     }
 }

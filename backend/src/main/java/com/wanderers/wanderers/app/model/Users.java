@@ -25,4 +25,10 @@ public class Users {
 
     private int status;
 
+    public Users(String username, String password, int status) {
+        this.username = username;
+        this.password = password;
+        this.status = status;
+    }
+
 }
