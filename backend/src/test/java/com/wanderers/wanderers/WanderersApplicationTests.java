@@ -16,7 +16,7 @@ public class WanderersApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		System.out.println(passwordEncoder.encode("1234"));
+		System.out.println(passwordEncoder.encode("abcd"));
 	}
 
 }
