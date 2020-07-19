@@ -13,7 +13,7 @@ import javax.persistence.Id;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+//@Entity
 public class Tag extends BaseModel{
 
     @Id

@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
@@ -23,12 +20,22 @@ public class Users {
 
     private String password;
 
-    private int status;
+    private int role;
 
-    public Users(String username, String password, int status) {
+    private String avatarUrl;
+
+    private String introduction;
+
+    private Long followerNum;
+
+    @ManyToOne(cascade={CascadeType.MERGE}, fetch= FetchType.EAGER)
+    @JoinColumn(name="bid") // 外键设置为f_id
+    private Band band;
+
+    public Users(String username, String password, int role) {
         this.username = username;
         this.password = password;
-        this.status = status;
+        this.role = role;
     }
 
 }
