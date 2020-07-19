@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.List;
 
 @Data
@@ -13,15 +16,26 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 public class Band extends BaseModel{
-    private int bandID;
-    private String bandName;
-    private String bandAvatar;
-    private String bandIntr;
-    private int bandFollows;
-    private int bandViews;
-    private int bandListens;
-    private int Downloads;
 
-    private List<Musician> musicianList;
-    private List<Music> musicList;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //自增
+    private Long bid;
+
+    private String bname;
+
+    private String avatarUrl;
+
+    private String introduction;
+
+    private int followerNum;
+
+    private Long leaderId;
+
+    public Band(String bname, String avatarUrl, String introduction, int followerNum, Long leaderId) {
+        this.bname = bname;
+        this.avatarUrl = avatarUrl;
+        this.introduction = introduction;
+        this. followerNum = followerNum;
+        this.leaderId = leaderId;
+    }
 }
