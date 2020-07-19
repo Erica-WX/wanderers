@@ -25,6 +25,8 @@ public class Band extends BaseModel{
     private String introduction;
     private int followerNum;
 
+    private int delFlag;
+
     //外键
     private Long leaderId;
 

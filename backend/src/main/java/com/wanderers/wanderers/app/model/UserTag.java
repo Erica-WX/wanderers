@@ -19,7 +19,16 @@ public class UserTag extends BaseModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private int delFlag;
+
     //外键
     private Long userId;
+    private Long bandId;
     private Long tagId;
+
+    public UserTag(Long userId, Long bandId, Long tagId) {
+        this.userId = userId;
+        this.bandId = bandId;
+        this.tagId = tagId;
+    }
 }

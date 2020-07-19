@@ -19,6 +19,8 @@ public class MusicTag extends BaseModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private int delFlag;
+
     //外键
     private Long musicId;
     private Long tagId;

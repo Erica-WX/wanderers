@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-//@Entity
+@Entity
 public class Album extends BaseModel{
 
     @Id
@@ -23,6 +23,8 @@ public class Album extends BaseModel{
     private String name;
     private String avatarUrl;
     private int like;
+
+    private int delFlag;
 
     //外键
     private Long userId;

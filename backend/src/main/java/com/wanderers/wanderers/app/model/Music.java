@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-//@Entity
+@Entity
 public class Music extends BaseModel{
 
     @Id
@@ -24,6 +24,8 @@ public class Music extends BaseModel{
     private String avatarUrl;
     private String name;
     private int likeNum;
+
+    private int delFlag;
 
     //外键
     private Long albumId;

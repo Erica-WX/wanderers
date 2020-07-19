@@ -1,7 +1,7 @@
 package com.wanderers.wanderers.app.web;
 
 import com.wanderers.wanderers.app.model.Music;
-import com.wanderers.wanderers.app.service.MusicService;
+import com.wanderers.wanderers.app.service.impl.MusicServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/music")
 public class MusicController {
     @Autowired
-    private MusicService musicService;
+    private MusicServiceImpl musicService;
 
     @RequestMapping("")
     public List<Music> findList(Music music){return musicService.findList(music);}
