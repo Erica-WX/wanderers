@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Band extends BaseModel{
+public class Band {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,11 +30,12 @@ public class Band extends BaseModel{
     //外键
     private Long leaderId;
 
-    public Band(String name, String avatarUrl, String introduction, int followerNum, Long leaderId) {
+    public Band(String name, String avatarUrl, String introduction, int followerNum, int delFlag, Long leaderId) {
         this.name = name;
         this.avatarUrl = avatarUrl;
         this.introduction = introduction;
         this.followerNum = followerNum;
+        this.delFlag = delFlag;
         this.leaderId = leaderId;
     }
 }

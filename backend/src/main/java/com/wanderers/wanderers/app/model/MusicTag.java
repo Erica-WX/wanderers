@@ -14,7 +14,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class MusicTag extends BaseModel {
+public class MusicTag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,4 +24,10 @@ public class MusicTag extends BaseModel {
     //外键
     private Long musicId;
     private Long tagId;
+
+    public MusicTag(int delFlag, Long musicId, Long tagId) {
+        this.delFlag = delFlag;
+        this.musicId = musicId;
+        this.tagId = tagId;
+    }
 }

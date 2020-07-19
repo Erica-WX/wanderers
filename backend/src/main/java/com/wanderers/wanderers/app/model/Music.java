@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Music extends BaseModel{
+public class Music {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,11 +30,12 @@ public class Music extends BaseModel{
     //外键
     private Long albumId;
 
-    public Music(String musicUrl, String avatarUrl, String name, int likeNum, Long albumId) {
+    public Music(String musicUrl, String avatarUrl, String name, int likeNum, int delFlag, Long albumId) {
         this.musicUrl = musicUrl;
         this.avatarUrl = avatarUrl;
         this.name = name;
         this.likeNum = likeNum;
+        this.delFlag = delFlag;
         this.albumId = albumId;
     }
 }

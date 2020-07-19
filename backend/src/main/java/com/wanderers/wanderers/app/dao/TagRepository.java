@@ -12,6 +12,6 @@ public interface TagRepository extends CrudRepository<Tag, Long> {
     @Query(value = "select * from Tag ", nativeQuery = true)
     List<Tag> getAll();
 
-    Optional<Tag> findTagById(String tagId);
+    Optional<Tag> findTagByTid(Long id);
 }
 

@@ -14,7 +14,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Tag extends BaseModel{
+public class Tag {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,4 +22,9 @@ public class Tag extends BaseModel{
     private String name;
 
     private int delFlag;
+
+    public Tag(String name, int delFlag) {
+        this.name = name;
+        this.delFlag = delFlag;
+    }
 }

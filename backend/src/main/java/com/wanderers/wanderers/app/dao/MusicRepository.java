@@ -12,6 +12,6 @@ public interface MusicRepository extends CrudRepository<Music, Long> {
     @Query(value = "select * from Music ", nativeQuery = true)
     List<Music> getAll();
 
-    Optional<Music> findMusicByMusicName(String musicName);
+    Optional<List<Music>> findMusicByName(String name);
 }
 

@@ -11,6 +11,4 @@ public interface AlbumRepository extends CrudRepository<Album, Long> {
 
     @Query(value = "select * from Album ", nativeQuery = true)
     List<Album> getAll();
-
-    Optional<Album> findAlbumByAlbumName(String AlbumName);
 }

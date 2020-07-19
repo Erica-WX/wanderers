@@ -22,4 +22,8 @@ public class UsersServiceImpl implements UserDetailsService {
 
         return usersRepository.findUsersByUsername(username).get();
     }
+
+    public void saveUser(Users user) {
+        usersRepository.save(user);
+    }
 }

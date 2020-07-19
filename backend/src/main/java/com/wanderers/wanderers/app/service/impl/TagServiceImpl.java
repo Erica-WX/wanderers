@@ -6,6 +6,6 @@ import com.wanderers.wanderers.sys.base.BaseService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TagServiceImpl extends BaseService<Tag, TagRepository> {
+public class TagServiceImpl {
     
 }

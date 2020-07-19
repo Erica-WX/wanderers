@@ -14,7 +14,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class AlbumTag extends BaseModel {
+public class AlbumTag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,4 +24,10 @@ public class AlbumTag extends BaseModel {
     //外键
     private Long albumId;
     private Long tagId;
+
+    public AlbumTag(int delFlag, Long albumId, Long tagId) {
+        this.delFlag = delFlag;
+        this.albumId = albumId;
+        this.tagId = tagId;
+    }
 }

@@ -14,7 +14,7 @@ import java.util.Collection;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Users implements UserDetails {
+public class Users implements UserDetails{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //自增
@@ -42,6 +42,17 @@ public class Users implements UserDetails {
         this.username = username;
         this.password = password;
         this.role = role;
+    }
+
+    public Users(String username, String password, int role, String avatarUrl, String introduction, Long followerNum, int delFlag, Band band) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.avatarUrl = avatarUrl;
+        this.introduction = introduction;
+        this.followerNum = followerNum;
+        this.delFlag = delFlag;
+        this.band = band;
     }
 
     @Override

@@ -5,7 +5,13 @@ import com.wanderers.wanderers.app.model.Album;
 import com.wanderers.wanderers.sys.base.BaseService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-public class AlbumServiceImpl extends BaseService<Album, AlbumRepository> {
-    
+public class AlbumServiceImpl{
+
+    private AlbumRepository albumRepository;
+    public List<Album> findAll(Album album) {
+        return albumRepository.getAll();
+    }
 }

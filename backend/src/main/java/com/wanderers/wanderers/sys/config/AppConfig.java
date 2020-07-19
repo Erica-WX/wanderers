@@ -1,8 +1,8 @@
 package com.wanderers.wanderers.sys.config;
 
+import com.wanderers.wanderers.app.service.impl.UsersServiceImpl;
 import com.wanderers.wanderers.sys.security.JWTAuthenticationFilter;
 import com.wanderers.wanderers.sys.security.JWTLoginFilter;
-import com.wanderers.wanderers.sys.security.UserService;
 import com.wanderers.wanderers.sys.utils.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -23,7 +23,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class AppConfig extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
 
     @Autowired
-    private UserService userService;
+    private UsersServiceImpl userService;
 
     @Autowired
     private Environment env;

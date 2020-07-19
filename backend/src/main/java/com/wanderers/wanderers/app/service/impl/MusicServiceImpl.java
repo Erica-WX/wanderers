@@ -5,7 +5,23 @@ import com.wanderers.wanderers.app.model.Music;
 import com.wanderers.wanderers.sys.base.BaseService;
 import org.springframework.stereotype.Service;
 
-@Service
-public class MusicServiceImpl extends BaseService<Music, MusicRepository> {
+import java.util.Iterator;
+import java.util.List;
 
+@Service
+public class MusicServiceImpl{
+    private MusicRepository musicRepository;
+
+    public List<Music> findList(Music music) {
+        return musicRepository.findMusicByName(music.getName()).get();
+    }
+
+    public List<Music> findAll(Music music) {
+        List<Music> list = musicRepository.getAll();
+        return list;
+    }
+
+    public void save(Music music) {
+        musicRepository.save(music);
+    }
 }

@@ -13,4 +13,5 @@ public interface UsersRepository extends CrudRepository<Users, Long> {
     List<Users> getAll();
 
     Optional<Users> findUsersByUsername(String username);
+
 }

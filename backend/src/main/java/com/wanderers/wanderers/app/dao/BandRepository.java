@@ -13,5 +13,5 @@ public interface BandRepository extends CrudRepository<Band, Long>{
     @Query(value = "select * from Band ", nativeQuery = true)
     List<Band> getAll();
 
-    Optional<Band> findBandByBandname(String bandName);
+    Optional<Band> findBandByName(String name);
 }

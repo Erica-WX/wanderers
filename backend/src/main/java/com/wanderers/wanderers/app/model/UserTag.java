@@ -14,7 +14,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class UserTag extends BaseModel {
+public class UserTag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,7 +26,8 @@ public class UserTag extends BaseModel {
     private Long bandId;
     private Long tagId;
 
-    public UserTag(Long userId, Long bandId, Long tagId) {
+    public UserTag(int delFlag, Long userId, Long bandId, Long tagId) {
+        this.delFlag = delFlag;
         this.userId = userId;
         this.bandId = bandId;
         this.tagId = tagId;

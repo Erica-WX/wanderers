@@ -1,6 +1,7 @@
 package com.wanderers.wanderers.sys.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.wanderers.wanderers.app.model.Users;
 import com.wanderers.wanderers.sys.utils.JWTUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -37,7 +38,7 @@ public class JWTLoginFilter extends UsernamePasswordAuthenticationFilter{
 
         try{
             //需要通过jackson将json数据转换成User对象{username：‘张三’，password：‘1234’}
-            User user = new ObjectMapper().readValue(request.getInputStream(),User.class);
+            Users user = new ObjectMapper().readValue(request.getInputStream(), Users.class);
 
             //直接返回Authentication对象，实现类为authentication(new UsernamePasswordAuthenticationToken
             return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
