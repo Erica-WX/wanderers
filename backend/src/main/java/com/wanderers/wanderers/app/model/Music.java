@@ -19,9 +19,12 @@ public class Music {
     private Long mid;
     private String musicUrl;
     private String avatarUrl;
+
+    @Column(columnDefinition = "varchar(36) default'未知曲目'")
     private String name;
     private int likeNum;
 
+    @Column(columnDefinition = "int default'0'")
     private int delFlag;
 
     //外键

@@ -1,7 +1,6 @@
 package com.wanderers.wanderers.app.model;
 
 import com.wanderers.wanderers.app.dao.AlbumRepository;
-import com.wanderers.wanderers.sys.base.BaseModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,20 +17,25 @@ public class Album{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long aid;
+
+    @Column(columnDefinition = "varchar(36) default'佚名'")
     private String name;
     private String avatarUrl;
+
+    @Column(columnDefinition = "int default'0'")
     private int like;
 
+    @Column(columnDefinition = "int default'0'")
     private int delFlag;
 
     //外键
-    @ManyToOne
+    @ManyToOne(cascade={CascadeType.MERGE,CascadeType.DETACH}, fetch= FetchType.EAGER)
     @JoinColumn(name = "id")
     private Users user;
-    @ManyToOne
+    @ManyToOne(cascade={CascadeType.MERGE,CascadeType.DETACH}, fetch= FetchType.EAGER)
     @JoinColumn(name = "bid")
     private Band band;
-    @OneToOne
+    @OneToOne(cascade={CascadeType.MERGE,CascadeType.DETACH}, fetch= FetchType.EAGER)
     @JoinColumn(name = "tid")
     private Tag tag;
 
@@ -44,4 +48,5 @@ public class Album{
         this.band = band;
         this.tag = tag;
     }
+
 }

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from './views/Login.vue'
+import SignUp from "./views/SignUp";
 import Index from './views/Index.vue'
 import Stream from './views/Stream.vue'
 import Library from './views/Library.vue'
@@ -14,6 +15,10 @@ export default new Router({
       path: '/',
       component: Index,
       redirect: '/index'
+    },
+    {
+      path: '/signUp',
+      component: SignUp
     },
     {
       path: '/login',

@@ -1,6 +1,7 @@
 package com.wanderers.wanderers.dao;
 
 import com.wanderers.wanderers.app.dao.UsersRepository;
+import com.wanderers.wanderers.app.model.Band;
 import com.wanderers.wanderers.app.model.Users;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,8 +34,15 @@ public class UsersRepositoryTest {
 
     @Test
     public void addNewUser() {
-        Users newUser = new Users("test", "test", 0);
+        Band band = new Band();
+        Users newUser = new Users("test", "test", 0 , "abc", "hahaha", 100, 0 , band);
         usersRepository.save(newUser);
+    }
+
+    @Test
+    public void addSimpleUser(){
+        Users simpleUser = new Users("simple","password",1);
+        usersRepository.save(simpleUser);
     }
 
     @Test

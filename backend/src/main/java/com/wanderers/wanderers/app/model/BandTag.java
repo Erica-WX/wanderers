@@ -15,6 +15,7 @@ public class BandTag {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(columnDefinition = "int default'0'")
     private int delFlag;
 
     //外键

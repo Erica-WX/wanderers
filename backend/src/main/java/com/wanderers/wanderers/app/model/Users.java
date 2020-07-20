@@ -1,6 +1,7 @@
 package com.wanderers.wanderers.app.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import net.minidev.json.annotate.JsonIgnore;
@@ -8,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
 @Data
@@ -24,18 +26,23 @@ public class Users implements UserDetails{
 
     private String password;
 
+    @Column(columnDefinition = "int default'1'")
     private int role;
 
+    @Column(columnDefinition = "varchar(255) default ''")
     private String avatarUrl;
 
+    @Column(columnDefinition = "varchar(255) default ''")
     private String introduction;
 
-    private Long followerNum;
+    @Column(columnDefinition = "int default'0'")
+    private int followerNum;
 
+    @Column(columnDefinition = "int default'0'")
     private int delFlag;
 
-    @ManyToOne(cascade={CascadeType.MERGE}, fetch= FetchType.EAGER)
-    @JoinColumn(name="bid") // 外键设置为f_id
+    @ManyToOne(cascade={CascadeType.MERGE,CascadeType.PERSIST}, fetch= FetchType.EAGER)
+    @JoinColumn(name="bid",columnDefinition = "bigint default 1") // 外键设置为f_id
     private Band band;
 
     public Users(String username, String password, int role) {
@@ -44,7 +51,7 @@ public class Users implements UserDetails{
         this.role = role;
     }
 
-    public Users(String username, String password, int role, String avatarUrl, String introduction, Long followerNum, int delFlag, Band band) {
+    public Users(String username, String password, int role, String avatarUrl, String introduction, int followerNum, int delFlag, Band band) {
         this.username = username;
         this.password = password;
         this.role = role;
