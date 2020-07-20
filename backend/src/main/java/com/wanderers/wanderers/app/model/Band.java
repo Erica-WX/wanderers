@@ -5,10 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Data
@@ -28,14 +25,17 @@ public class Band {
     private int delFlag;
 
     //外键
-    private Long leaderId;
+    @OneToOne
+    @JoinColumn(name = "id")
+    private Users leader;
 
-    public Band(String name, String avatarUrl, String introduction, int followerNum, int delFlag, Long leaderId) {
+    public Band(String name, String avatarUrl, String introduction, int followerNum, int delFlag, Users leader) {
         this.name = name;
         this.avatarUrl = avatarUrl;
         this.introduction = introduction;
         this.followerNum = followerNum;
         this.delFlag = delFlag;
-        this.leaderId = leaderId;
+        this.leader = leader;
     }
+
 }

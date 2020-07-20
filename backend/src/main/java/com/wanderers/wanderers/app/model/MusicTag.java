@@ -5,10 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
@@ -22,12 +19,17 @@ public class MusicTag {
     private int delFlag;
 
     //外键
-    private Long musicId;
-    private Long tagId;
+    @OneToOne
+    @JoinColumn(name = "mid")
+    private Music music;
 
-    public MusicTag(int delFlag, Long musicId, Long tagId) {
+    @OneToOne
+    @JoinColumn(name = "tid")
+    private Tag tag;
+
+    public MusicTag(int delFlag, Music music, Tag tag) {
         this.delFlag = delFlag;
-        this.musicId = musicId;
-        this.tagId = tagId;
+        this.music = music;
+        this.tag = tag;
     }
 }

@@ -5,10 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Data
@@ -28,14 +25,16 @@ public class Music {
     private int delFlag;
 
     //外键
-    private Long albumId;
+    @ManyToOne
+    @JoinColumn(name = "aid")
+    private Album album;
 
-    public Music(String musicUrl, String avatarUrl, String name, int likeNum, int delFlag, Long albumId) {
+    public Music(String musicUrl, String avatarUrl, String name, int likeNum, int delFlag, Album album) {
         this.musicUrl = musicUrl;
         this.avatarUrl = avatarUrl;
         this.name = name;
         this.likeNum = likeNum;
         this.delFlag = delFlag;
-        this.albumId = albumId;
+        this.album = album;
     }
 }

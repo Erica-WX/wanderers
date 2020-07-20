@@ -6,10 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Data
@@ -28,17 +25,23 @@ public class Album{
     private int delFlag;
 
     //外键
-    private Long userId;
-    private Long bandId;
-    private Long tagId;
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private Users user;
+    @ManyToOne
+    @JoinColumn(name = "bid")
+    private Band band;
+    @OneToOne
+    @JoinColumn(name = "tid")
+    private Tag tag;
 
-    public Album(String name, String avatarUrl, int like, int delFlag, Long userId, Long bandId, Long tagId) {
+    public Album(String name, String avatarUrl, int like, int delFlag, Users user, Band band, Tag tag) {
         this.name = name;
         this.avatarUrl = avatarUrl;
         this.like = like;
         this.delFlag = delFlag;
-        this.userId = userId;
-        this.bandId = bandId;
-        this.tagId = tagId;
+        this.user = user;
+        this.band = band;
+        this.tag = tag;
     }
 }

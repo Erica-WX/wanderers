@@ -1,6 +1,5 @@
 package com.wanderers.wanderers.app.model;
 
-import com.wanderers.wanderers.sys.base.BaseModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +10,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class UserTag {
+public class BandTag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,16 +19,16 @@ public class UserTag {
 
     //外键
     @OneToOne
-    @JoinColumn(name = "id")
-    private Users user;
+    @JoinColumn(name = "bid")
+    private Band band;
 
     @OneToOne
     @JoinColumn(name = "tid")
     private Tag tag;
 
-    public UserTag(int delFlag, Users user, Tag tag) {
+    public BandTag(int delFlag, Band band, Tag tag) {
         this.delFlag = delFlag;
-        this.user = user;
+        this.band = band;
         this.tag = tag;
     }
 }
