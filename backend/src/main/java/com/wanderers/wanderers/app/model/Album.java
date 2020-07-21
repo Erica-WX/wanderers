@@ -23,7 +23,7 @@ public class Album{
     private String avatarUrl;
 
     @Column(columnDefinition = "int default'0'")
-    private int like;
+    private int likes;
 
     @Column(columnDefinition = "int default'0'")
     private int delFlag;
@@ -31,7 +31,7 @@ public class Album{
     //外键
     @ManyToOne(cascade={CascadeType.MERGE,CascadeType.DETACH}, fetch= FetchType.EAGER)
     @JoinColumn(name = "id")
-    private Users user;
+    private Users users;
     @ManyToOne(cascade={CascadeType.MERGE,CascadeType.DETACH}, fetch= FetchType.EAGER)
     @JoinColumn(name = "bid")
     private Band band;
@@ -39,12 +39,12 @@ public class Album{
     @JoinColumn(name = "tid")
     private Tag tag;
 
-    public Album(String name, String avatarUrl, int like, int delFlag, Users user, Band band, Tag tag) {
+    public Album(String name, String avatarUrl, int likes, int delFlag, Users users, Band band, Tag tag) {
         this.name = name;
         this.avatarUrl = avatarUrl;
-        this.like = like;
+        this.likes = likes;
         this.delFlag = delFlag;
-        this.user = user;
+        this.users = users;
         this.band = band;
         this.tag = tag;
     }
