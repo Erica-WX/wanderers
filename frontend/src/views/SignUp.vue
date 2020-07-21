@@ -10,39 +10,38 @@
     </el-header>
     <el-row type="flex" class="row" justify="center">
       <el-col :span="8" :offset="0">
-        <el-form ref="loginForm" :rules="rules" style="..."
-                 :label-position="'right'" :model="userInfo">
-          <el-form-item>
-            <label class="label">用户名</label>
-            <el-input placeholder="输入用户名" auto-complete="new-password" v-model="username">
-              <template slot="prepend">
-                用户名
-              </template>
-            </el-input>
+        
+          <el-form 
+          ref="userInfo" 
+          :rules="rules" 
+          style="..."
+          :label-position="labelPosition" label-width="100px"
+          :model="userInfo"
+          >
+          <el-form-item label="用户名">
+            <el-input placeholder="输入用户名" v-model="userInfo.username"></el-input>
           </el-form-item>
-          <el-form-item>
-            <label class="label">密码</label>
-            <el-input placeholder="输入密码" type="password" auto-complete="new-password" v-model="password">
-              <template slot="prepend">
-                &nbsp密码&nbsp&nbsp
-              </template>
-            </el-input>
+          <el-form-item label="密码">
+            <!-- <template slot="prepend" align="center" style="width: 100px">
+                密 码
+              </template> -->
+            <el-input placeholder="输入密码" type="password" v-model="userInfo.password"></el-input>
           </el-form-item>
-          <el-form-item>
-            <label class="label">再次输入密码</label>
-            <el-input placeholder="再次输入密码" type="password" auto-complete="repeat-password" v-model="password">
+          <el-form-item label="再次输入密码">
+            <el-input placeholder="再次输入密码" type="password" v-model="userInfo.nextPassword">
             </el-input>
           </el-form-item>
         </el-form>
+        
+        
         <el-row>
           <el-col :span="4" :offset="10">
-            <el-button type="primary" @click="submit">
-              注册
-            </el-button>
+            <el-button type="primary" @click="submit">注册</el-button>
           </el-col>
         </el-row>
       </el-col>
     </el-row>
+    
   </el-container>
 </template>
 
@@ -53,6 +52,13 @@
             return {
                 jumpSeconds: 2,
 
+                labelPosition: 'right',
+
+                userInfo: {
+                  username: '',
+                  password: '',
+                  nextPassword: '',
+                },
                 signUpForm:{
                     username: '',
                     password: '',
@@ -72,19 +78,35 @@
         methods: {
             submit: function () {
                 // todo 1.获取input框的数据 2.通过axios提交数据
-                let username = this.username;
-                let password = this.password;
-                let role = this.role;
-                let avatarUrl = this.avatarUrl;
-                let introduction = this.introduction;
-                let follower = this.follower;
-                let del_flag = this.del_flag;
-                let band = this.band;
-                axios.post('/signUp', {username, password,role,avatarUrl,introduction,follower,del_flag,band}).then(res => {
+
+                let user = {};
+                // let username = this.username;
+                // let password = this.password;
+                // let role = this.role;
+                // let avatarUrl = this.avatarUrl;
+                // let introduction = this.introduction;
+                // let follower = this.follower;
+                // let del_flag = this.del_flag;
+                // let band = this.band;
+                user.username = this.userInfo.username;
+                user.password = this.userInfo.password;
+                // user.role = 1;
+                // user.avatarUrl = "https://xxx";
+                // user.introduction = "balabala";
+                // user.followerNum = 10;
+                // user.delFlag = 1;
+                // user.bid = 1;
+
+                console.log(user.password);
+                console.log(user.username);
+                axios.post('/signUp', {
+                  newUserResponse: user
+                  }).then(
+                    function(res){
                     console.log(res) //打印返回内容
                     this.$router.push({path: '/Login'})
                 }).catch(()=>{
-                    this.signFlag = true
+                    //this.signFlag = true
                     alert("SignUp failed")
                 })
             }
