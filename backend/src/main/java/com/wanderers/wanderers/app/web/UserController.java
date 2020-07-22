@@ -1,6 +1,7 @@
 package com.wanderers.wanderers.app.web;
 
 import com.wanderers.wanderers.app.model.Users;
+import com.wanderers.wanderers.app.payload.NewUserResponse;
 import com.wanderers.wanderers.app.service.impl.UsersServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,10 +18,13 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
 
     @PostMapping("/signUp")
-    public Users signUp(@RequestBody Users user){
+    public String signUp(@RequestBody NewUserResponse newUserResponse){
         // 前端返回值需要与Users的属性一一对应，写null或""都可以，不能空着
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userService.saveUser(user);
-        return user;
+        System.out.println("In User controller");
+        System.out.println(newUserResponse.getUsername());
+        System.out.println(newUserResponse.getPassword());
+        // user.setPassword(passwordEncoder.encode(user.getPassword()));
+        // userService.saveUser(user);
+        return "OK";
     }
 }

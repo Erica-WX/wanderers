@@ -17,7 +17,7 @@ public class Band {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bid;
 
-    @Column(columnDefinition = "varchar(36) default'佚名'")
+    //@Column(columnDefinition = "varchar(36) default'佚名'")
     private String name;
     private String avatarUrl;
     private String introduction;
@@ -27,17 +27,19 @@ public class Band {
     private int delFlag;
 
     //外键
-    @OneToOne(cascade = {CascadeType.PERSIST})
-    @JoinColumn(name = "id")
-    private Users leader;
+    /*@OneToOne(cascade = {CascadeType.PERSIST})
+    @JoinColumn(name = "leader_id")
 
-    public Band(String name, String avatarUrl, String introduction, int followerNum, int delFlag, Users leader) {
+    private Users leader;*/
+    private int leaderId;
+
+    public Band(String name, String avatarUrl, String introduction, int followerNum, int delFlag, int leaderId) {
         this.name = name;
         this.avatarUrl = avatarUrl;
         this.introduction = introduction;
         this.followerNum = followerNum;
         this.delFlag = delFlag;
-        this.leader = leader;
+        this.leaderId = leaderId;
     }
 
     public Band() {
@@ -47,6 +49,6 @@ public class Band {
         this.introduction = "introduction";
         this.followerNum = 0;
         this.delFlag = 0;
-        this.leader = null;
+        this.leaderId = 1;
     }
 }

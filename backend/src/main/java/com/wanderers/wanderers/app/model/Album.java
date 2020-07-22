@@ -18,7 +18,7 @@ public class Album{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long aid;
 
-    @Column(columnDefinition = "varchar(36) default'佚名'")
+    //@Column(columnDefinition = "varchar(36) default'佚名'")
     private String name;
     private String avatarUrl;
 
